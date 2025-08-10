@@ -1,0 +1,36 @@
+# Node modules (thư viện cài qua npm)
+node_modules/
+
+# Thư mục build hoặc thư mục tạm (nếu có)
+dist/
+build/
+out/
+
+# File môi trường chứa config bí mật
+.env
+
+# Các file log
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# MacOS system files
+.DS_Store
+
+# Thư mục cache của IDE (ví dụ VSCode)
+.vscode/
+
+# Thư mục hoặc file debug, temp khác
+tmp/
+temp/
+
+# Thư mục coverage (khi test code có tạo)
+coverage/
+
+# Các file lock mà bạn không muốn commit (tuỳ project)
+package-lock.json
+yarn.lock
+
+# Nếu bạn dùng EditorConfig (tuỳ bạn muốn đưa lên git hay không)
+.editorconfig
