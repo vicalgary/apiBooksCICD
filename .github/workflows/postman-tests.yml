@@ -1,0 +1,32 @@
+name: Run Postman API Tests
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  postman-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Cài đặt Postman CLI
+        run: npm install -g postman-cli
+
+      - name: Chạy Postman collection test
+        env:
+          POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
+        run: |
+          postman collection run "42412959-c417bcf7-0673-48e2-804b-97ed37e2579b" \
+            --reporters cli,json,junit \
+            --reporter-json-export report/results.json \
+            --reporter-junit-export report/results.xml
+
+      - name: Upload báo cáo test
+        uses: actions/upload-artifact@v3
+        with:
+          name: postman-reports
+          path: report/
