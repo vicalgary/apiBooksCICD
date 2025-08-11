@@ -52,4 +52,3 @@ async function handle(req, res) {
 }
 
 export default { handle };
-ac
