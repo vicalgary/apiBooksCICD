@@ -10,7 +10,7 @@ function sendResponse(res, statusCode, data) {
 async function handle(req, res) {
   const parsedUrl = url.parse(req.url, true);
   const path = parsedUrl.pathname;
-  const method = req.method;
+  const method = req.method;  
 
   if (path === '/api/books' && method === 'GET') {
     const books = await bookController.getBooks();
@@ -52,3 +52,4 @@ async function handle(req, res) {
 }
 
 export default { handle };
+ac
