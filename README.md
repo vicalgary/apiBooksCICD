@@ -54,7 +54,7 @@ Response: json
     "author": "Kyle Simpson",
     "year": 2015
   }
-]
+]    
 
 Test:
 Bạn có thể dùng Postman hoặc curl để test API.
