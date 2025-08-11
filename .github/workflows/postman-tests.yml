@@ -20,10 +20,7 @@ jobs:
         env:
           POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
         run: |
-          postman collection run "42412959-c417bcf7-0673-48e2-804b-97ed37e2579b" \
-            --reporters cli,json,junit \
-            --reporter-json-export report/results.json \
-            --reporter-junit-export report/results.xml
+          postman collection run "42412959-c417bcf7-0673-48e2-804b-97ed37e2579b -e 42412959-0d30a94d-a5e0-4a4b-82f0-d4d36d0d56e2"
 
       - name: Upload báo cáo test
         uses: actions/upload-artifact@v4
