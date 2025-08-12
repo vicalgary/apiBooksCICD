@@ -13,9 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Cài đặt Postman CLI
-        run: npm install -g @postmanhq/postman-cli
-
       - name: Chạy Postman collection test
         env:
           POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
