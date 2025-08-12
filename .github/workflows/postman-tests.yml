@@ -13,6 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Install Postman CLI
+        run: |
+            curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+
       - name: Chạy Postman collection test
         env:
           POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
