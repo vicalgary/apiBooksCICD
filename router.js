@@ -48,7 +48,7 @@ async function handle(req, res) {
 
   } else {
     sendResponse(res, 404, { error: 'Not found' });
-  }
+  }  
 }
 
 export default { handle };
