@@ -28,7 +28,7 @@ DB_CONNECTION_STRING=mongodb://localhost:27017/bookdb
 
 Khởi chạy server:
 npm start
-Server sẽ chạy trên http://localhost:3000
+Server sẽ chạy trên http://localhost:3000, https://apibookscicd.onrender.com/api/books
 
 API Endpoints:
 GET	/api/books	Lấy danh sách tất cả sách
