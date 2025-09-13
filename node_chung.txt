@@ -1,0 +1,118 @@
+Trong project (đặc biệt là theo MVC – Model, View, Controller), thì Controller chính là “người điều phối” (giống như quản lý trung gian).
+
+👉 Nói dễ hiểu:
+
+Model: xử lý dữ liệu, kết nối DB, business logic.
+
+View: phần hiển thị cho user (HTML, UI).
+
+Controller: đứng giữa, nhận request từ user → gọi Model xử lý → lấy kết quả → trả lại cho View hoặc trả JSON cho client.
+
+------------------------------------------------------------Route là bản đồ → không liên quan tới dữ liệu → không được bỏ trong model.
+
+Nó nằm ngoài model, thường trong folder routes/, để controller và model làm đúng vai trò của mình.
+
+
+3. Vị trí thường dùng của route.js
+
+Trong project chuẩn, cấu trúc thường như sau:
+
+project/
+│── controllers/
+│   └── bookController.js
+│── models/
+│   └── bookModel.js
+│── routes/
+│   └── bookRoutes.js
+│── services/ (nếu có)
+│── server.js (hoặc app.js)
+
+
+routes/ → định nghĩa URL, chuyển đến controller.
+
+controllers/ → nhận xử lý request.
+
+models/ → làm việc với DB.
+
+----------------------------------------------
+1. Route là gì?
+
+route.js (hay gọi là router) là nơi định nghĩa đường dẫn (URL) và method (GET, POST, PUT, DELETE).
+
+Khi có request tới server, router sẽ xem request đó thuộc đường dẫn nào, sau đó chuyển tiếp (forward) cho controller tương ứng xử lý.
+
+👉 Nghĩ đơn giản:
+
+Route = bản đồ đường đi → chỉ đường request tới đúng controller.
+
+Controller = người nhận request, xử lý hoặc gọi model.
+
+Model = dữ liệu, kết nối DB.
+
+2. Tại sao route.js không nằm trong model?
+
+Model chỉ có nhiệm vụ làm việc với data (cơ sở dữ liệu, business logic).
+
+Route lại liên quan đến HTTP request (URL, method) → nó không dính gì tới dữ liệu.
+
+Nếu để route trong model, sẽ bị lộn xộn: vừa lo chuyện DB, vừa lo request → khó maintain, sai nguyên tắc tách biệt trách nhiệm (Separation of Concerns) trong kiến trúc phần mềm.
+
+-----------------------------------------
+Vai trò của server.js
+
+server.js (hoặc app.js) chính là điểm khởi động của ứng dụng.
+
+Nó tạo ra web server (bằng http hoặc framework như Express).
+
+Nó kết nối toàn bộ các phần khác lại: routes, controllers, models.
+
+Nó thường lo việc cấu hình chung (middlewares, database connection, error handling).
+
+👉 Nghĩ nó như cửa chính của nhà hàng:
+
+Người khách (request) sẽ đi qua cửa chính (server.js).
+
+Từ đó mới vào đúng khu vực (routes → controller → model).
+
+-----------------------------------
+
+{
+  "name": "qlsach",
+  "version": "1.0.0",
+  "main": "server.js", → file chính (entry point) mặc định.
+  "type": "module", → cho phép dùng cú pháp import/export.
+  "scripts": → định nghĩa lệnh để chạy project.
+  {
+    "start": "node server.js"
+  }
+}
+
+🚀 Cách chạy project
+1. Chạy trực tiếp bằng Node:  node server.js
+
+2. Chạy bằng npm script (cách chuẩn nhất)
+Trong package.json đã có "start": "node server.js", nên chỉ cần:  npm start  hoặc:  yarn start
+
+3. Dùng lệnh khác nếu bạn thêm script
+Ví dụ thêm:
+"scripts": {
+  "start": "node server.js",
+  "dev": "nodemon server.js"
+}
+Thì chạy: npm run dev
+👉 Lúc này dùng nodemon để auto-restart khi code thay đổi.
+
+4. Dùng package runner (ít dùng nhưng có)
+Có thể dùng npx: npx node server.js
+hoặc các tool khác như pm2 khi deploy production.
+
+🔑 Mẹo để đỡ quên
+Khi mới học, nhớ 2 cái chính:
+node server.js (chạy trực tiếp).
+npm start (chạy qua script).
+
+Sau này làm việc thực tế thì hay dùng:
+npm run dev với nodemon.
+pm2 start server.js khi chạy production.
+
+---------------------------------------------
